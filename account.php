@@ -1,10 +1,9 @@
-<!--
-Au<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<?php
+session_start();
+    if(isset($_SESSION['email'])){
+        header('location: index.php');
+}
+?>
 <!DOCTYPE HTML>
 <html>
 
@@ -89,8 +88,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <option value="What is Your Dream Job">What is Your Best friend name?</option>
                                     <option value="Your Favorite Food">Your Favorite Book?</option>
                                     <option value="Your Favorite Movie">Your Favorite Movie?</option>
-                                    <input type="text" name='answer' maxlength="32" pattern='[A-Za-z]*'
-                                        style='width:270px;margin:10px;' required>
+                                    <input type="text" name='answer' maxlength="32"
+                                        pattern='^([A-Za-z0-9]+ )+[A-Za-z0-9]+$|^[A-Za-z0-9]+$' '
+                                        style=' width:270px;margin:10px;' required>
 
                                 </select>
 

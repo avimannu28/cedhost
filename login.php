@@ -1,10 +1,9 @@
-<!--
-Au
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<?php 
+session_start();
+    if(isset($_SESSION['email'])){
+        header('location: index.php');
+}
+?>
 <!DOCTYPE HTML>
 <html>
 
@@ -46,7 +45,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
     <!---header--->
-    <?php include './header.php'?>
+    <?php include './header.php';
+        
+    ?>
     <!---header--->
     <!---login--->
     <form method='post' action='./signup_data.php'>

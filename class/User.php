@@ -1,5 +1,6 @@
 <?php
 include_once 'Dbcon.php';
+session_start();
     class User{
  public $host = "localhost";
  public $user = "root";
@@ -28,8 +29,36 @@ include_once 'Dbcon.php';
        }
 
        public function login($name,$password){
-        $password=md5($password);
+           $password=md5($password);
+           $sql=mysqli_query($this->conn, "SELECT * from tbl_user");
+           while ($data=mysqli_fetch_assoc($sql)) {
+               if ($data['email']==$name && $data['password']==$password) {
+                   if ($data['is_admin']==1) {
+                       $_SESSION['admin']=$data['is_admin'];
+                   } else {
+                       if ($data['email_approved']==1 || $data['phone_approved']==1) {
+                           $_SESSION['email']=$data['email'];
+                           header('location:./index.php');
+                       } else {
+                       
+                          return $data['email'];
+                           
+                       }
+                   }
+               }
+             
+           }
+       }
+
+
+       public function checks($datas){
         $sql=mysqli_query($this->conn,"SELECT * from tbl_user");
+        while($data=mysqli_fetch_assoc($sql)){
+            if(md5($data['email'])==$datas){
+                $_SESSION['array'] =array($data['email'],$data['mobile']);
+                return array($data['email'],$data['mobile']);
+            }
+        }
        }
     }
  ?>

@@ -17,8 +17,8 @@ if (isset($_POST['signup'])) {
  if ($check == 0) {
   $signin = $signup->signup($signupemail, $signupname, $mobile, $signpass1, $question, $answer);
   if ($signin == 1) {
-    
-   echo "<script>alert('Signed Up successfull');window.location.href='login.php';</script>";
+    $email_Data=md5($signupemail);
+   echo "<script>alert('Signed Up successfull');window.location.href='verify.php?data=$email_Data';</script>";
   } else {
    echo "<script>alert('Somethig went Wrong')<script>";
   }
@@ -32,6 +32,18 @@ if ((isset($_POST['login']))) {
  $name     = $_POST['email'];
  $password = $_POST['password'];
  $login=$signup->login($name,$password);
+ if($login){
+$login=md5($login);
+    echo ("<script LANGUAGE='JavaScript'>
+    window.alert('Verify First');
+    window.location.href='verify.php?data=$login';
+    </script>");
+ }else{
+  echo ("<script LANGUAGE='JavaScript'>
+    window.alert('Wrong Credential');
+    window.location.href='login.php';
+    </script>");
+ }
 
 
 }
