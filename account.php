@@ -89,8 +89,8 @@ session_start();
                                     <option value="Your Favorite Food">Your Favorite Book?</option>
                                     <option value="Your Favorite Movie">Your Favorite Movie?</option>
                                     <input type="text" name='answer' maxlength="32"
-                                        pattern='^([A-Za-z0-9]+ )+[A-Za-z0-9]+$|^[A-Za-z0-9]+$' '
-                                        style=' width:270px;margin:10px;' required>
+                                        pattern='^([A-Za-z0-9]+ )+[A-Za-z0-9]+$|^[A-Za-z0-9]+$'
+                                        style='width:270px;margin:10px;' required>
 
                                 </select>
 

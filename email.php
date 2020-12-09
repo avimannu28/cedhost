@@ -4,10 +4,17 @@
 *
 * @category Components
 * @package Packagename
-* @author Sumit kumar Pandey <pandeysumit399@gmail.com>
+* @author Sumit kumar Pandey <avimannu28@gmail.com>
 * @license http://www.php.net/license/3_01.txt PHP License 3.01
 * @link http://localhost/training/php%20mysql%20task1/register/signup.php
 */
+
+    $email=$_POST['email'];
+    $token=$_POST['token'];
+    include_once './class/User.php';
+    $insert_token=new User();
+    $insert_token->update_token($token,$email);
+
 require "vendor/autoload.php";
 
 $robo = 'avimannu28@gmail.com';
@@ -40,12 +47,13 @@ $mailer->Password = 'avinash2828';
 $mailer->SMTPSecure = 'ssl';
 $mailer->Port = 465;
 
-$mailer->setfrom('avimannu28@gmail.com', 'Name of sender');
-$mailer->addAddress('pandeysumit399@gmail.com', 'Name of recipient');
+$mailer->setfrom('avimannu28@gmail.com', 'Admin');
+$mailer->addAddress($email, 'Name of recipient');
 
 $mailer->isHTML(true);
 $mailer->Subject = 'PHPMailer Test';
-$mailer->Body = 'This is a <b>SAMPLE<b> email sent through <b>PHPMailer<b>';
+$email=md5($email);
+$mailer->Body = 'This is a <a type="button" class="btn btn-sucess" href="http://localhost/cedhost/token.php?id='.$token.'&email='.$email.'">Click here to Activate';
 
 $mailer->send();
 $mailer->ClearAllRecipients();

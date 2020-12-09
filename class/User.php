@@ -20,7 +20,7 @@ session_start();
     //Signup user
        public function signup($signupemail,$signupname,$mobile, $signpass1, $question,$answer){
             $password=md5($signpass1);
-            $sql=mysqli_query($this->conn,"INSERT INTO `tbl_user`( `email`, `name`, `mobile`, `email_approved`, `phone_approved`, `active`, `is_admin`, `sign_up_date`, `password`, `security_question`, `security_answer`) VALUES ('$signupemail','$signupname','$mobile','0','0','1','0',now(),'$password','$question','$answer')");
+            $sql=mysqli_query($this->conn,"INSERT INTO `tbl_user`( `email`, `name`, `mobile`, `email_approved`, `phone_approved`, `active`, `is_admin`, `sign_up_date`, `password`, `security_question`, `security_answer`) VALUES ('$signupemail','$signupname','$mobile','0','0','0','0',now(),'$password','$question','$answer')");
             if($sql){
                 return true;
             }else{
@@ -57,6 +57,20 @@ session_start();
             if(md5($data['email'])==$datas){
                 $_SESSION['array'] =array($data['email'],$data['mobile']);
                 return array($data['email'],$data['mobile']);
+            }
+        }
+       }
+
+       public function update_token($token,$email){
+        $sql=mysqli_query($this->conn,"UPDATE tbl_user SET token='$token' WHERE email='$email'");
+       }
+
+       public function verify($email,$token){
+        $sqls=mysqli_query($this->conn,"SELECT * from tbl_user");
+        while($data=mysqli_fetch_assoc($sqls)){
+            if(md5($data['email'])==$email){
+                $sql=mysqli_query($this->conn,"UPDATE tbl_user SET email_approved='1',active='1' WHERE token='$token'");
+                echo "<script>alert('Successfully verified login Now');window.location.href='login.php'</script>";
             }
         }
        }
