@@ -4,7 +4,7 @@
     $check=new User();
     if(isset($_GET['data'])){
         $checkemail=$check->checks($_GET['data']);
-        
+
     }
 ?>
 <!DOCTYPE HTML>
@@ -41,7 +41,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								$(' #da-thumbs > li ').each( function() { $(this).hoverdir(); } );
 
 							});
-						</script>						
+						</script>
+                        						
 <!--script-->
 </head>
 <body>
