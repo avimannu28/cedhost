@@ -1,4 +1,9 @@
-<?php include './header.php' ?>
+<?php 
+session_start(); 
+if(!isset( $_SESSION['admin'])){
+  header('location:../login.php');
+}
+include './header.php'; ?>
     <!-- Header -->
     <!-- Header -->
     <div class="header bg-primary pb-6">

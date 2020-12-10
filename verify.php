@@ -12,6 +12,7 @@
 //Print it out for example purposes.
 
     }
+  
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -71,14 +72,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                             <div>
                                 <span>Phone Number<label>*</label></span>
-                                <input type="text" id='mobile'
+                                 <input type="text" id='mobile' name='numbers'
                                     pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$"
                                     title="if 0 then it will be 11 digit else 10 digit" placeholder="Verify Password"
                                     value='<?php echo $checkemail[1] ?>' required disabled>
+                               <input type='number' name='otp' id='number' placeholder="Enter otp" style='display:none'> 
+                                <input type="submit" type='button' class='btn btn-success' value='click to verify' name='verification' id='click_to_verify' style='display:none'>
                             </div>
 
 
-                            <input type="submit" type='button' class='btn btn-success' name='signup' value="Verify">
+                            <input type="submit" type='button' class='btn btn-success' id='mobiles' name='signup'>
 
 
                         </div>
@@ -118,6 +121,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 success: function(result) {
                     alert('Mail Send Successfully');
                     $("#signup").val("re-send");
+                }
+            })
+        });
+        $("#mobiles").on("click", function(ev) {
+            ev.preventDefault();
+           
+            $.ajax({
+                method: "POST",
+                url: "mobileverify.php",
+                data: {
+                    phone: phone,
+                    
+                },
+                success: function(result) {
+                    alert(result);
+                    $("#number").css("display","block");
+                    $("#mobiles").css("display","none");
+                     $("#click_to_verify").css("display","block");
+                   
+                   
+                }
+            })
+        })
+         $("#click_to_verify").on("click", function(ev) {
+            ev.preventDefault();
+             otp=$("#number").val()
+            $.ajax({
+                method: "POST",
+                url: "mobileresponse.php",
+                data: {
+                    phone: phone,
+                    otp:otp,
+                },
+                success: function(result) {
+                    alert(result);
+                    window.location.href = 'http://localhost/cedhost/login.php';
+                    $("#number").css("display","block");
+                    $("#mobiles").css("display","none");
+                     $("#click_to_verify").css("display","block");
+                   
+                   
                 }
             })
         })

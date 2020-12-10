@@ -1,4 +1,7 @@
 	<?php
+include_once './class/Product.php';
+	$fetch=new Product();
+	$product=$fetch->fetch_all_category();
 $filename = basename($_SERVER['REQUEST_URI']);
 $files    = array("index.php", "services.php", "pricing.php", "blog.php", "contact.php", "account.php", "linuxhosting.php", "wordpresshosting.php", "windowshosting.php", "cmshosting.php");
 if(isset($_SESSION['email'])){
@@ -37,10 +40,12 @@ if(isset($_SESSION['email'])){
 								<li class="dropdown <?php if ($filename == 'linuxhosting.php' || $filename == 'wordpresshosting.php' || $filename == 'windowshosting.php' || $filename == 'cmshosting.php'): ?> active <?php endif; ?>">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 									<ul class="dropdown-menu">
-										<li><a href="linuxhosting.php">Linux hosting</a></li>
-										<li><a href="wordpresshosting.php">WordPress Hosting</a></li>
-										<li><a href="windowshosting.php">Windows Hosting</a></li>
-										<li><a href="cmshosting.php">CMS Hosting</a></li>
+										<?php 
+											foreach($product as $key=>$value){
+												echo "<li><a href='$value[link]'>$value[prod_name]</a></li>";
+											}
+										 ?>
+										
 									</ul>
 								</li>
 								<li <?php if ($filename == 'pricing.php'): ?> class="active" <?php endif; ?>><a href="pricing.php">Pricing</a></li>

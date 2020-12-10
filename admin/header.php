@@ -18,6 +18,7 @@
 
 <head>
     <meta charset="utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
@@ -32,6 +33,7 @@
     <!-- Page plugins -->
     <!-- Argon CSS -->
     <link rel="stylesheet" href="./assets/css/argon.css?v=1.2.0" type="text/css">
+   
 </head>
 
 <body>
@@ -59,12 +61,12 @@
                         <div class="dropdown">
                             <div class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                 <i class="ni ni-planet text-orange"></i>
-                                 Create Category
+                               <i class="fa fa-magnet" aria-hidden="true"></i>
+                                 Product
                             </div>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li class="nav-item"><a class="dropdown-item" href="#">Create Category</a></li>
-                                <li class="nav-item"><a class="dropdown-item" href="icons.php">Add Product</a></li>
+                                <li class="nav-item"><a class="dropdown-item" href="createCategory.php">Create Category</a></li>
+                                <li class="nav-item"><a class="dropdown-item" href="addproduct.php">Add Product</a></li>
                                 <a class="dropdown-item" href="#">View Product</a></li>
                             </div>
                         </div>
@@ -72,7 +74,8 @@
                          <div class="dropdown">
                             <div class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                 <i class="ni ni-planet text-apple"></i>
+                               <i class="fa fa-envelope-open" aria-hidden="true"></i>
+                                
                                  Orders
                             </div>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -84,7 +87,7 @@
                          <div class="dropdown">
                             <div class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                 <i class="ni ni-planet text-green"></i>
+                                <i class="fa fa-server" aria-hidden="true"></i>
                                  Service
                             </div>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -96,7 +99,7 @@
                          <div class="dropdown">
                             <div class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                 <i class="ni ni-planet text-blue"></i>
+                                <i class="fa fa-user" aria-hidden="true"></i>
                                 User
                             </div>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -108,7 +111,7 @@
                         <div class="dropdown">
                             <div class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                 <i class="ni ni-planet text-red"></i>
+                                <i class="fa fa-rss" aria-hidden="true"></i>
                                  Blog
                             </div>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -120,7 +123,7 @@
                         <div class="dropdown">
                             <div class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                 <i class="ni ni-planet text-grey"></i>
+                                <i class="fa fa-unlock" aria-hidden="true"></i>
                                 Accounts
                             </div>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -129,62 +132,12 @@
                                 <a class="dropdown-item" href="#">View Product</a></li>
                             </div>
                         </div>
-                        <li class="nav-item">
-                            <a class="nav-link" href="upgrade.php">
-                                <i class="ni ni-send text-dark"></i>
-                                <span class="nav-link-text">Upgrade</span>
-                            </a>
-                        </li>
+                        
                     </ul>
                     <!-- Divider -->
-                    <hr class="my-3">
-                    <!-- Heading -->
-                    <h6 class="navbar-heading p-0 text-muted">
-                        <span class="docs-normal">Documentation</span>
-                    </h6>
+                 
                     <!-- Navigation -->
-                    <ul class="navbar-nav mb-md-3">
-                        <li class="nav-item">
-                            <a class="nav-link"
-                                href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html"
-                                target="_blank">
-                                <i class="ni ni-spaceship"></i>
-                                <span class="nav-link-text">Getting started</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                                href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html"
-                                target="_blank">
-                                <i class="ni ni-palette"></i>
-                                <span class="nav-link-text">Foundation</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                                href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html"
-                                target="_blank">
-                                <i class="ni ni-ui-04"></i>
-                                <span class="nav-link-text">Components</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                                href="https://demos.creative-tim.com/argon-dashboard/docs/plugins/charts.html"
-                                target="_blank">
-                                <i class="ni ni-chart-pie-35"></i>
-                                <span class="nav-link-text">Plugins</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active active-pro" href="upgrade.html">
-                                <i class="ni ni-send text-dark"></i>
-                                <span class="nav-link-text">Upgrade to PRO</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                   
         </div>
     </nav>
     <!-- Main content -->
@@ -427,7 +380,7 @@
                                     <span>Support</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a href="#!" class="dropdown-item">
+                                <a href="../logout.php" class="dropdown-item">
                                     <i class="ni ni-user-run"></i>
                                     <span>Logout</span>
                                 </a>

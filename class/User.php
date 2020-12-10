@@ -35,6 +35,7 @@ session_start();
                if ($data['email']==$name && $data['password']==$password) {
                    if ($data['is_admin']==1) {
                        $_SESSION['admin']=$data['is_admin'];
+                       header('location:./admin/index.php');
                    } else {
                        if ($data['email_approved']==1 || $data['phone_approved']==1) {
                            $_SESSION['email']=$data['email'];
@@ -73,6 +74,11 @@ session_start();
                 echo "<script>alert('Successfully verified login Now');window.location.href='login.php'</script>";
             }
         }
+       }
+
+       public function update_mobile($mobile){
+       $sql=mysqli_query($this->conn,"UPDATE tbl_user SET phone_approved='1',active='1' WHERE mobile='$mobile'");
+
        }
     }
  ?>
