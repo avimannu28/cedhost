@@ -10,9 +10,12 @@ if(!isset( $_SESSION['admin'])){
   if(isset($_POST['submit'])){
     $subcategory=$_POST['sub_category_name'];
     $category_id=$_POST['parent_category'];
-    $value=$category->add_sub_categories($category_id,$subcategory);
+    $link=$_POST['link'];
+    $value=$category->add_sub_categories($category_id,$subcategory,$link);
     if($value==1){
       echo "<script>alert('Added Successfully')</script>";
+    }else{
+        echo "<script>alert('Already Exist')</script>";
     }
     
   }
@@ -29,7 +32,7 @@ if(!isset( $_SESSION['admin'])){
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#">Create Category</a></li>
+                            <li class="breadcrumb-item"><a href="#">Product</a></li>
                             <li class="breadcrumb-item active" aria-current="page">create Category</li>
                         </ol>
                     </nav>
@@ -67,10 +70,16 @@ if(!isset( $_SESSION['admin'])){
 
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Sub Category Name</label>
-                        <input type='text' class="form-control text-dark" title="First name contain letter only whithout space and special character"
-                                        pattern="^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$" name='sub_category_name' required>
+                        <input type='text' class="form-control text-dark" placeholder='Enter category'
+                            pattern="^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$" name='sub_category_name' required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Page Url</label>
+                        <input type='text' class="form-control text-dark" placeholder="Enter page link" name='link'
+                            required>
                     </div>
                     <input type='submit' value='submit' name='submit' class='btn btn-success mb-4'>
+                  
                 </form>
 
             </div>
@@ -83,7 +92,7 @@ if(!isset( $_SESSION['admin'])){
                     <h3 class="text-white mb-0">Dark table</h3>
                 </div>
                 <div class="table-responsive text-dark">
-                    <table class="table align-items-center table-dark table-flush text-center" id="subcat" >
+                    <table class="table align-items-center table-dark table-flush text-center" id="subcat">
                         <thead>
                             <tr>
                                 <th>Category</th>
@@ -95,22 +104,23 @@ if(!isset( $_SESSION['admin'])){
                             </tr>
                         </thead>
                         <tbody>
-                           
-                               <?php 
+
+                            <?php 
 
                                     $fetch_all_category=$category->fetch_all_category();
                                     foreach ($fetch_all_category as $key=>$value) {
                                         $fetch_category=$category->fetch_table_category($value['prod_parent_id']);
                                         if ($value['prod_available']==1) {
-                                            echo "<tr class='text-dark'><td>$fetch_category</td><td>$value[id]</td><td>$value[prod_name]</td><td>Available</td><td>$value[prod_launch_date]</td><td><a type='button' class='btn btn-warning' href='#'>edit</a><a type='button' class='btn btn-danger' href='#'>Delete</a></td></tr>";
+                                            echo "<tr class='text-dark'><td>$fetch_category</td><td>$value[id]</td><td>$value[prod_name]</td><td>Available</td><td>$value[prod_launch_date]</td><td><a type='button' class='btn btn-success' href='edit_category_product.php?id=".$value['id']."&&data=edit_category'>edit</a><a onClick='javascript: return confirm('Please confirm deletion');' type='button' class='btn btn-danger' href='delete.php?id=".$value['id']."&&data=delete_category''>Delete</a></td></tr>";
                                         } else {
-                                            echo "<tr><td>$fetch_category</td><td>$value[id]</td><td>$value[prod_name]</td><td>Available</td><td>$value[prod_launch_date]</td><td><a type='button' class='btn btn-warning' href='#'>edit</a><a type='button' class='btn btn-danger' href='#'>Delete</a></td></tr>";
+                                            echo "<tr class='text-dark'><td>$fetch_category</td><td>$value[id]</td><td>$value[prod_name]</td><td>UnAvailable</td><td>$value[prod_launch_date]</td><td><a type='button' class='btn btn-warning' href='edit_category_product.php?id=".$value['id']."'>edit</a><a onClick='javascript: return confirm('Please confirm deletion');' type='button' class='btn btn-danger' href='delete.php?id=".$value['id']."&&data=delete_category'>Delete</a></td></tr>";
                                         }
                                     }
 
                                 ?>
-                           
+
                         </tbody>
+
                     </table>
                 </div>
             </div>
@@ -132,17 +142,18 @@ if(!isset( $_SESSION['admin'])){
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
     <link rel='stylesheet' href="./assets/css/datatable.css">
     <script src="./assets/js/argon.js?v=1.2.0"></script>
-    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
-  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js">
+    </script>
+    <script type="text/javascript" charset="utf8"
+        src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
     <script>
-  $(function(){
-    $('#subcat').DataTable({
-      "sPaginationType": "full_numbers"
-  });
-  })
-  </script>
-    
+    $(function() {
+        $('#subcat').DataTable({
+            "sPaginationType": "full_numbers"
+        });
+    })
+    </script>
+
     </body>
+
     </html>
-   
-  

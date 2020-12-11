@@ -18,9 +18,13 @@ class Product
         return $sql;
     }
     //function to add sub category in database
-    public function add_sub_categories($category_id,$name){
-        $sql=mysqli_query($this->conn,"INSERT INTO tbl_product (prod_parent_id,prod_name,link,prod_available,prod_launch_date) VALUES ('$category_id','$name','xyz','1',now())");
-        return 1;
+    public function add_sub_categories($category_id,$name,$link){
+        $sql=mysqli_query($this->conn,"INSERT INTO tbl_product (prod_parent_id,prod_name,link,prod_available,prod_launch_date) VALUES ('$category_id','$name','$link','1',now())");
+        if(($sql)==true){
+            return 1;
+        }else{
+            return 0;
+        }
         
     }
 
@@ -36,4 +40,20 @@ class Product
             return $data['prod_name'];
         }
     }
+
+    public function edit_sub_categories($category_id,$subcategory,$link,$available,$id){
+        $sql=mysqli_query($this->conn,"UPDATE tbl_product set prod_parent_id='$category_id',prod_name='$subcategory',link='$link',prod_available='$available' where id='$id'");
+        if(($sql)==true){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    public function delete_category($id){
+        $sql=mysqli_query($this->conn,"DELETE from tbl_product where id='$id'");
+        return 1;
+    }
+
+
 }
