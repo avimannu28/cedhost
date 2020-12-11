@@ -376,7 +376,7 @@
                                     <span>Activity</span>
                                 </a>
                                 <a href="#!" class="dropdown-item">
-                                    <i class="ni ni-support-16"></i>
+                                     <i class="ni ni-support-16"></i>
                                     <span>Support</span>
                                 </a>
                                 <div class="dropdown-divider"></div>

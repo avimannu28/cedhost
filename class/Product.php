@@ -19,12 +19,15 @@ class Product
     }
     //function to add sub category in database
     public function add_sub_categories($category_id,$name,$link){
-        $sql=mysqli_query($this->conn,"INSERT INTO tbl_product (prod_parent_id,prod_name,link,prod_available,prod_launch_date) VALUES ('$category_id','$name','$link','1',now())");
-        if(($sql)==true){
-            return 1;
-        }else{
+        $sql=mysqli_query($this->conn,"SELECT * from tbl_product where prod_name='$name'");
+        $result=$sql->num_rows;
+        if($result>0){
             return 0;
+        }else{
+        $sql=mysqli_query($this->conn,"INSERT INTO tbl_product (prod_parent_id,prod_name,link,prod_available,prod_launch_date) VALUES ('$category_id','$name','$link','1',now())");
+        return 1;
         }
+      
         
     }
 
@@ -42,11 +45,13 @@ class Product
     }
 
     public function edit_sub_categories($category_id,$subcategory,$link,$available,$id){
-        $sql=mysqli_query($this->conn,"UPDATE tbl_product set prod_parent_id='$category_id',prod_name='$subcategory',link='$link',prod_available='$available' where id='$id'");
-        if(($sql)==true){
-            return 1;
-        }else{
+        $sql=mysqli_query($this->conn,"SELECT * FROM tbl_product where prod_name='$subcategory' and id!='$id'");
+        $result=$sql->num_rows;
+        if($result>0){
             return 0;
+        }else{
+        $sql=mysqli_query($this->conn,"UPDATE tbl_product set prod_parent_id='$category_id',prod_name='$subcategory',link='$link',prod_available='$available' where id='$id'");
+         return 1;
         }
     }
 
@@ -54,6 +59,13 @@ class Product
         $sql=mysqli_query($this->conn,"DELETE from tbl_product where id='$id'");
         return 1;
     }
+    public function add_new_product($product_parent_id,$product_name,$product_url,$monthly_price,$annual_price,$sku,$feature){
+            $enter_into_category=mysqli_query($this->conn,"INSERT INTO tbl_product (prod_parent_id,prod_name,link,prod_available,prod_launch_date) VALUES ('$product_parent_id','$product_name','$product_url','1',now())");
+            $id=$this->conn->insert_id;
+            if($enter_into_category){
+                $new_product=mysqli_query($this->conn,"INSERT INTO tbl_product_description (prod_id,description,mon_price,annual_price,sku) VALUES ('$id','$feature','$monthly_price','$annual_price','$sku')");
+            }
+       }
 
 
 }

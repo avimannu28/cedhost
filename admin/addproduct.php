@@ -8,12 +8,22 @@ if(!isset( $_SESSION['admin'])){
   $category=new Product();
   $categories=$category->fetch_category();
   if(isset($_POST['submit'])){
-    $subcategory=$_POST['sub_category_name'];
-    $category_id=$_POST['parent_category'];
+    $product_parent_id=$_POST['parent_category'];
+    $product_name=$_POST['product_name'];
+    $product_url=$_POST['product_url'];
+    $monthly_price=$_POST['monthly_price'];
+    $annual_price=$_POST['annual_price'];
+    $sku=$_POST['sku'];
+    $web_space=$_POST['web_space'];
+    $band_width=$_POST['band_width'];
+    $free_domain=$_POST['free_domain'];
+    $lang_tech=$_POST['lang_tech'];
+    $mail_box=$_POST['mail_box'];
+    $feature=array("Web_Space"=>$web_space,"Band_Width"=>$band_width,"Free_Domain"=>$free_domain,"Language_Technology"=>$lang_tech,"Mail_Box"=>$mail_box);
+    $feature=json_encode($feature);
+    $addproduct=$category->add_new_product($product_parent_id,$product_name,$product_url,$monthly_price,$annual_price,$sku,$feature);
     //$value=$category->add_sub_categories($category_id,$subcategory);
-    if($value==1){
-      echo "<script>alert('Added Successfully')</script>";
-    }
+    
     
   }
 
@@ -67,56 +77,81 @@ if(!isset( $_SESSION['admin'])){
 
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Product Name</label>
-                        <input type='text' class="form-control text-dark"
-                            title="First name contain letter only whithout space and special character"
-                            pattern="^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$" name='sub_category_name' required>
+                        <input type='text' class="form-control text-dark" name='product_name' required>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Page Url</label>
-                        <input type='text' class="form-control text-dark"
-                            title="First name contain letter only whithout space and special character"
-                            pattern="^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$" name='sub_category_name' required>
+                        <input type='text' class="form-control text-dark" name='product_url' required>
                     </div>
+
+
                     <hr class='text-light bg-dark'>
+
+
+
                     <h2 class='pb-0 mb-0'>Product Description</h2>
                     <h4 class='pb-0 mb-0'>Enter Product Description Below</h4>
                     <hr class='pt-0 mt-3'>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Enter Monthley Price</label>
-                        <input type='text' class="form-control text-dark" placeholder="ex:23" name='sub_category_name'
+                        <input type='text' class="form-control text-dark" placeholder="ex:23" name='monthly_price'
                             required>
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            This Would be monthly plane
+                        </small>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Enter Annual Price</label>
-                        <input type='text' class="form-control text-dark" placeholder="ex:23" name='sub_category_name'
+                        <input type='text' class="form-control text-dark" placeholder="ex:23" name='annual_price'
                             required>
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            This Would be annual plane
+                        </small>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">SKU</label>
-                        <input type='text' class="form-control text-dark" name='sub_category_name' required>
+                        <input type='text' class="form-control text-dark" name='sku' required>
                     </div>
+
+
+
                     <hr>
-                     <h2 class='pb-0 mb-0'>Features</h2>
+
+
+
+                    <h2 class='pb-0 mb-0'>Features</h2>
                     <hr class='pt-0 mt-3'>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="exampleFormControlTextarea1">Web Space (in GB)*</label>
-                        <input type='text' class="form-control text-dark" name='sub_category_name' required>
+                        <input type='text' class="form-control text-dark" name='web_space' required>
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            Enter 0.5 to 512 mb
+                        </small>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="exampleFormControlTextarea1">Band Width (in GB)*</label>
-                        <input type='text' class="form-control text-dark" name='sub_category_name' required>
+                        <input type='text' class="form-control text-dark" name='band_width' required>
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            Enter 0.5 to 512 mb
+                        </small>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="exampleFormControlTextarea1">Free Domain</label>
-                        <input type='text' class="form-control text-dark" name='sub_category_name' required>
+                        <input type='text' class="form-control text-dark" name='free_domain' required>
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            Enter 0 if no domain available in this service
+                        </small>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="exampleFormControlTextarea1">Language / Technology Support</label>
-                        <input type='text' class="form-control text-dark" name='sub_category_name' required>
+                        <input type='text' class="form-control text-dark" name='lang_tech' required>
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            Separate by (,) Ex: PHP, MySQL, MongoDB
+                        </small>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Mailbox</label>
-                        <input type='text' class="form-control text-dark" name='sub_category_name' required>
+                        <input type='text' class="form-control text-dark" name='mail_box' required>
                     </div>
 
                     <input type='submit' value='submit' name='submit' class='btn btn-success mb-4'>

@@ -80,5 +80,6 @@ session_start();
        $sql=mysqli_query($this->conn,"UPDATE tbl_user SET phone_approved='1',active='1' WHERE mobile='$mobile'");
 
        }
+       
     }
  ?>
