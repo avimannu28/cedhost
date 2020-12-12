@@ -22,7 +22,10 @@ if(!isset( $_SESSION['admin'])){
     $feature=array("Web_Space"=>$web_space,"Band_Width"=>$band_width,"Free_Domain"=>$free_domain,"Language_Technology"=>$lang_tech,"Mail_Box"=>$mail_box);
     $feature=json_encode($feature);
     $addproduct=$category->add_new_product($product_parent_id,$product_name,$product_url,$monthly_price,$annual_price,$sku,$feature);
-    //$value=$category->add_sub_categories($category_id,$subcategory);
+    if($addproduct==1){
+        echo "<script>alert('Added Successfully')</script>";
+    }
+    
     
     
   }
@@ -35,12 +38,12 @@ if(!isset( $_SESSION['admin'])){
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Add Product</h6>
+                    <h6 class="h2 text-white d-inline-block mb-0">Add New Product</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="index.php"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item">Product<a href="#"></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Add Product</li>
+                            <li class="breadcrumb-item active" aria-current="page">Add New Product</li>
                         </ol>
                     </nav>
                 </div>
@@ -77,11 +80,15 @@ if(!isset( $_SESSION['admin'])){
 
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Product Name</label>
-                        <input type='text' class="form-control text-dark" name='product_name' required>
+                        <input type='text' class="form-control text-dark" id='product_name' onblur="myfun(this.id)"
+                            name='product_name' required>
+                            <small id='product_name1'></small>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Page Url</label>
-                        <input type='text' class="form-control text-dark" name='product_url' required>
+                        <input type='text' class="form-control text-dark" name='product_url' id='product_url'
+                            onblur="myfun(this.id)" required>
+                             <small id='product_url1'></small>
                     </div>
 
 
@@ -94,24 +101,28 @@ if(!isset( $_SESSION['admin'])){
                     <hr class='pt-0 mt-3'>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Enter Monthley Price</label>
-                        <input type='text' class="form-control text-dark" placeholder="ex:23" name='monthly_price'
-                            required>
+                        <input type='text' class="form-control text-dark" placeholder="ex:23" id='monthly_price'
+                            onblur="myfun(this.id)" name='monthly_price' required>
                         <small id="passwordHelpBlock" class="form-text text-muted">
                             This Would be monthly plane
                         </small>
+                        <small id='monthly_price1'></small>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Enter Annual Price</label>
-                        <input type='text' class="form-control text-dark" placeholder="ex:23" name='annual_price'
-                            required>
+                        <input type='text' class="form-control text-dark" id='annual_price' onblur="myfun(this.id)"
+                            placeholder="ex:23" name='annual_price' required>
                         <small id="passwordHelpBlock" class="form-text text-muted">
                             This Would be annual plane
                         </small>
+                        <small id='annual_price1'></small>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">SKU</label>
-                        <input type='text' class="form-control text-dark" name='sku' required>
+                        <input type='text' class="form-control text-dark" id='sku' onblur="myfun(this.id)" name='sku'
+                            required>
                     </div>
+                    <small id='sku1'></small>
 
 
 
@@ -123,36 +134,47 @@ if(!isset( $_SESSION['admin'])){
                     <hr class='pt-0 mt-3'>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Web Space (in GB)*</label>
-                        <input type='text' class="form-control text-dark" name='web_space' required>
+                        <input type='text' class="form-control text-dark" id='web_space' onblur="myfun(this.id)"
+                            name='web_space' required>
                         <small id="passwordHelpBlock" class="form-text text-muted">
                             Enter 0.5 to 512 mb
                         </small>
+                        <small id='web_space1'></small>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Band Width (in GB)*</label>
-                        <input type='text' class="form-control text-dark" name='band_width' required>
+                        <input type='text' class="form-control text-dark" name='band_width' id='band_width'
+                            onblur="myfun(this.id)" required>
                         <small id="passwordHelpBlock" class="form-text text-muted">
                             Enter 0.5 to 512 mb
                         </small>
+                        <small id='band_width1'></small>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Free Domain</label>
-                        <input type='text' class="form-control text-dark" name='free_domain' required>
+                        <input type='text' class="form-control text-dark" id='free_domain' onblur="myfun(this.id)"
+                            name='free_domain' required>
                         <small id="passwordHelpBlock" class="form-text text-muted">
                             Enter 0 if no domain available in this service
                         </small>
+                        <small id='free_domain1'></small>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Language / Technology Support</label>
-                        <input type='text' class="form-control text-dark" name='lang_tech' required>
+                        <input type='text' class="form-control text-dark" name='lang_tech' id='lang_tech'
+                            onblur="myfun(this.id)" required>
                         <small id="passwordHelpBlock" class="form-text text-muted">
                             Separate by (,) Ex: PHP, MySQL, MongoDB
                         </small>
+                        <small id='lang_tech1'></small>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Mailbox</label>
-                        <input type='text' class="form-control text-dark" name='mail_box' required>
+                        <input type='text' class="form-control text-dark" name='mail_box' id='mail_box'
+                            onblur="myfun(this.id)" pattern='((^[0-9]*$)|(^[A-Za-z]+$))' required>
+                            <small id='mail_box1'></small>
                     </div>
+                     
 
                     <input type='submit' value='submit' name='submit' class='btn btn-success mb-4'>
                 </form>
@@ -160,46 +182,7 @@ if(!isset( $_SESSION['admin'])){
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <div class="card bg-default shadow">
-                <div class="card-header bg-transparent border-0">
-                    <h3 class="text-white mb-0">Dark table</h3>
-                </div>
-                <div class="table-responsive text-dark">
-                    <table class="table align-items-center table-dark table-flush text-center" id="subcat">
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Subcategory Id</th>
-                                <th>Name</th>
-                                <th>Available/UnAvailable</th>
-                                <th>Launch Date</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
 
-                            <?php 
-
-                                    $fetch_all_category=$category->fetch_all_category();
-                                    foreach ($fetch_all_category as $key=>$value) {
-                                        $fetch_category=$category->fetch_table_category($value['prod_parent_id']);
-                                        if ($value['prod_available']==1) {
-                                            echo "<tr class='text-dark'><td>$fetch_category</td><td>$value[id]</td><td>$value[prod_name]</td><td>Available</td><td>$value[prod_launch_date]</td><td><a type='button' class='btn btn-warning' href='#'>edit</a><a type='button' class='btn btn-danger' href='#'>Delete</a></td></tr>";
-                                        } else {
-                                            echo "<tr><td>$fetch_category</td><td>$value[id]</td><td>$value[prod_name]</td><td>Available</td><td>$value[prod_launch_date]</td><td><a type='button' class='btn btn-warning' href='#'>edit</a><a type='button' class='btn btn-danger' href='#'>Delete</a></td></tr>";
-                                        }
-                                    }
-
-                                ?>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Footer -->
     <?php include './footer.php'; ?>
 
@@ -220,11 +203,38 @@ if(!isset( $_SESSION['admin'])){
     </script>
     <script type="text/javascript" charset="utf8"
         src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
     <script>
-    $(function() {
-        $('#subcat').DataTable({
-            "sPaginationType": "full_numbers"
-        });
+    function myfun(id) {
+        var value = document.getElementById(id).value;
+        values=id+1;
+        if (value == 0) {
+            
+            document.getElementById(id).style.border = '2px solid red';
+              document.getElementById(values).style.color = 'red';
+            document.getElementById(values).innerHTML = 'Enter Value';
+
+            
+        } else {
+            document.getElementById(id).style.border = '2px solid green';
+              document.getElementById(values).style.color = 'green';
+            document.getElementById(values).innerHTML = 'Correct';
+
+        }
+    }
+
+    $(document).ready(function(){
+      $("#mail_box").keyup(function(){
+        var v=$(this).val();
+        var reg=new RegExp('((^[0-9]*$)|(^[A-Za-z]+$))');
+        if(reg.test(v)){
+          $("#mail_box1").html("");
+         
+        } else {
+          $("#mail_box1").html("invalid");
+        }
+
+      })
     })
     </script>
 

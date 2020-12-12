@@ -31,7 +31,7 @@ if(!isset( $_SESSION['admin'])){
                     <h6 class="h2 text-white d-inline-block mb-0">create Category</h6>
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="index.php"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="#">Product</a></li>
                             <li class="breadcrumb-item active" aria-current="page">create Category</li>
                         </ol>
@@ -89,7 +89,7 @@ if(!isset( $_SESSION['admin'])){
         <div class="col">
             <div class="card bg-default shadow">
                 <div class="card-header bg-transparent border-0">
-                    <h3 class="text-white mb-0">Dark table</h3>
+                    <h3 class="text-white mb-0">Sub Category table</h3>
                 </div>
                 <div class="table-responsive text-dark">
                     <table class="table align-items-center table-dark table-flush text-center" id="subcat">

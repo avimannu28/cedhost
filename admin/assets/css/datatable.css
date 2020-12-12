@@ -46,6 +46,7 @@ table.dataTable thead .sorting_desc_disabled {
     cursor: pointer;
     *cursor: hand;
     background-repeat: no-repeat;
+    color: white;
     background-position: center right;
 }
 
@@ -275,6 +276,7 @@ table.dataTable th.dt-center,
 table.dataTable td.dt-center,
 table.dataTable td.dataTables_empty {
     text-align: center;
+    color: black;
 }
 
 table.dataTable th.dt-right,
@@ -379,7 +381,7 @@ table.dataTable td {
     color: white;
     border-radius: 3px;
     padding: 5px;
-    background-color: transparent;
+    background-color: black;
     padding: 4px;
 }
 

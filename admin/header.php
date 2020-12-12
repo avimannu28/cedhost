@@ -67,7 +67,7 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <li class="nav-item"><a class="dropdown-item" href="createCategory.php">Create Category</a></li>
                                 <li class="nav-item"><a class="dropdown-item" href="addproduct.php">Add Product</a></li>
-                                <a class="dropdown-item" href="#">View Product</a></li>
+                                <a class="dropdown-item" href="view_product.php">View Product</a></li>
                             </div>
                         </div>
 
