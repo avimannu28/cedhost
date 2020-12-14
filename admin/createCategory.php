@@ -71,14 +71,13 @@ if(!isset( $_SESSION['admin'])){
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Sub Category Name</label>
                         <input type='text' class="form-control text-dark" placeholder='Enter category'
-                            pattern="^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$" name='sub_category_name' required>
+                            pattern='^[a-zA-Z\s]*[a-zA-Z]+[.a-zA-Z0-9\-]*$' id='sub_category_name' name='sub_category_name' required>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Page Url</label>
-                        <input type='text' class="form-control text-dark" placeholder="Enter page link" name='link'
-                            required>
+                        <input type='text' class="form-control text-dark" placeholder="Enter page link" name='link'>
                     </div>
-                    <input type='submit' value='submit' name='submit' class='btn btn-success mb-4'>
+                    <input type='submit' value='submit' id='submit' name='submit' class='btn btn-success mb-4'>
                   
                 </form>
 
@@ -153,6 +152,21 @@ if(!isset( $_SESSION['admin'])){
         });
     })
     </script>
+    <script>
+         $("#sub_category_name").keyup(function() {
+            var v = $(this).val();
+            var reg = new RegExp('^[a-zA-Z\s]*[a-zA-Z]+[.a-zA-Z0-9\-]*$');
+            if (reg.test(v)) {
+                $("#sub_category_name").css("border", "2px solid green");
+                 $("#submit").prop("disabled","false");
+            } else {
+                $("#sub_category_name").css("border", "2px solid red");
+                $("#submit").prop("disabled","true");
+            }
+
+        })
+    </script>
+
 
     </body>
 

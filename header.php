@@ -42,7 +42,7 @@ if(isset($_SESSION['email'])){
 									<ul class="dropdown-menu">
 										<?php 
 											foreach($product as $key=>$value){
-												echo "<li><a href='$value[link]'>$value[prod_name]</a></li>";
+												echo "<li><a href='catpage.php?id=".$value['id']."'>$value[prod_name]</a></li>";
 											}
 										 ?>
 										

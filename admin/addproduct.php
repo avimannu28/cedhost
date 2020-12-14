@@ -81,7 +81,7 @@ if(!isset( $_SESSION['admin'])){
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Product Name</label>
                         <input type='text' class="form-control text-dark" id='product_name' onblur="myfun(this.id)"
-                            name='product_name' required>
+                          pattern='^[a-zA-Z0-9]*[-\s]?[a-zA-Z]+[-\s]?[0-9]*(([a-zA-Z0-9]*[-\s]?[a-zA-Z]+[-\s]?[0-9]*)+)*$'  name='product_name' required>
                             <small id='product_name1'></small>
                     </div>
                     <div class="form-group">
@@ -101,7 +101,7 @@ if(!isset( $_SESSION['admin'])){
                     <hr class='pt-0 mt-3'>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Enter Monthley Price</label>
-                        <input type='text' class="form-control text-dark" placeholder="ex:23" id='monthly_price'
+                        <input type='text' class="form-control text-dark"  pattern='([0-9]+(\.[0-9]+)?)' placeholder="ex:23" id='monthly_price'
                             onblur="myfun(this.id)" name='monthly_price' required>
                         <small id="passwordHelpBlock" class="form-text text-muted">
                             This Would be monthly plane
@@ -111,7 +111,7 @@ if(!isset( $_SESSION['admin'])){
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Enter Annual Price</label>
                         <input type='text' class="form-control text-dark" id='annual_price' onblur="myfun(this.id)"
-                            placeholder="ex:23" name='annual_price' required>
+                            placeholder="ex:23" name='annual_price'  pattern='([0-9]+(\.[0-9]+)?)' required>
                         <small id="passwordHelpBlock" class="form-text text-muted">
                             This Would be annual plane
                         </small>
@@ -119,7 +119,7 @@ if(!isset( $_SESSION['admin'])){
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">SKU</label>
-                        <input type='text' class="form-control text-dark" id='sku' onblur="myfun(this.id)" name='sku'
+                        <input type='text' class="form-control text-dark" pattern="^[a-zA-Z0-9#](?:[a-zA-Z0-9_-]*[a-zA-Z0-9])?$" id='sku' onblur="myfun(this.id)" name='sku'
                             required>
                     </div>
                     <small id='sku1'></small>
@@ -134,7 +134,7 @@ if(!isset( $_SESSION['admin'])){
                     <hr class='pt-0 mt-3'>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Web Space (in GB)*</label>
-                        <input type='text' class="form-control text-dark" id='web_space' onblur="myfun(this.id)"
+                        <input type='text' class="form-control text-dark"  pattern='([0-9]+(\.[0-9]+)?)' id='web_space' onblur="myfun(this.id)"
                             name='web_space' required>
                         <small id="passwordHelpBlock" class="form-text text-muted">
                             Enter 0.5 to 512 mb
@@ -143,7 +143,7 @@ if(!isset( $_SESSION['admin'])){
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Band Width (in GB)*</label>
-                        <input type='text' class="form-control text-dark" name='band_width' id='band_width'
+                        <input type='text' class="form-control text-dark"  pattern='([0-9]+(\.[0-9]+)?)' name='band_width' id='band_width'
                             onblur="myfun(this.id)" required>
                         <small id="passwordHelpBlock" class="form-text text-muted">
                             Enter 0.5 to 512 mb
@@ -153,7 +153,7 @@ if(!isset( $_SESSION['admin'])){
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Free Domain</label>
                         <input type='text' class="form-control text-dark" id='free_domain' onblur="myfun(this.id)"
-                            name='free_domain' required>
+                         pattern="((^[0-9]*$)|(^[A-Za-z]+$))"   name='free_domain' required>
                         <small id="passwordHelpBlock" class="form-text text-muted">
                             Enter 0 if no domain available in this service
                         </small>
@@ -161,7 +161,7 @@ if(!isset( $_SESSION['admin'])){
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Language / Technology Support</label>
-                        <input type='text' class="form-control text-dark" name='lang_tech' id='lang_tech'
+                        <input type='text' class="form-control text-dark" name='lang_tech' id='lang_tech' pattern='^[a-zA-Z0-9]*[a-zA-Z]+[0-9]*(,?([a-zA-Z0-9]*[a-zA-Z]+[0-9]*)+)*$'
                             onblur="myfun(this.id)" required>
                         <small id="passwordHelpBlock" class="form-text text-muted">
                             Separate by (,) Ex: PHP, MySQL, MongoDB
@@ -215,26 +215,162 @@ if(!isset( $_SESSION['admin'])){
             document.getElementById(values).innerHTML = 'Enter Value';
 
             
-        } else {
-            document.getElementById(id).style.border = '2px solid green';
-              document.getElementById(values).style.color = 'green';
-            document.getElementById(values).innerHTML = 'Correct';
-
-        }
+        } 
     }
 
     $(document).ready(function(){
+    flag=0;
       $("#mail_box").keyup(function(){
         var v=$(this).val();
         var reg=new RegExp('((^[0-9]*$)|(^[A-Za-z]+$))');
         if(reg.test(v)){
           $("#mail_box1").html("");
+          $("#mail_box").css("border","1px solid green");
+          flag=flag+1;
          
         } else {
+        $("#mail_box1").css("color","red");
           $("#mail_box1").html("invalid");
+          $("#mail_box").css("border","1px solid red");
+          
+        }
+
+      });
+       $("#sku").keyup(function(){
+        var v=$(this).val();
+        var reg=new RegExp('^[a-zA-Z0-9#](?:[a-zA-Z0-9_-]*[a-zA-Z0-9])?$');
+        if(reg.test(v)){
+          $("#sku1").html("");
+          $("#sku").css("border","1px solid green");
+           flag=flag+1;
+         
+        } else {
+        $("#sku1").css("color","red");
+          $("#sku1").html("only '#' is allowed in starting, '-' special char allowed");
+           $("#sku").css("border","1px solid red");
+          
+        }
+
+      });
+
+       $("#lang_tech").keyup(function(){
+        var v=$(this).val();
+        var reg=new RegExp('^[a-zA-Z0-9]*[a-zA-Z]+[0-9]*(,?([a-zA-Z0-9]*[a-zA-Z]+[0-9]*)+)*$');
+        if(reg.test(v)){
+          $("#lang_tech1").html("");
+          $("#lang_tech").css("border","1px solid green");
+           flag=flag+1;
+         
+        } else {
+        $("#lang_tech1").css("color","red");
+          $("#lang_tech1").html("Only ',' allowed as special char Only alphabetic/ alpha-numeric");
+           $("#lang_tech").css("border","1px solid red");
+          
+        }
+
+      });
+      $("#free_domain").keyup(function(){
+        var v=$(this).val();
+        var reg=new RegExp("((^[0-9]*$)|(^[A-Za-z]+$))");
+        if(reg.test(v)){
+          $("#free_domain1").html("");
+          $("#free_domain").css("border","1px solid green");
+           flag=flag+1;
+         
+        } else {
+        $("#free_domain1").css("color","red");
+          $("#free_domain1").html("Only numeric/ only alphabetic");
+           $("#free_domain").css("border","1px solid red");
+          
+        }
+
+      });
+       $("#product_name").keyup(function(){
+        var v=$(this).val();
+      var reg = new RegExp(/^[a-zA-Z0-9]*[-\s]?[a-zA-Z]+[-\s]?[0-9]*(([a-zA-Z0-9]*[-\s]?[a-zA-Z]+[-\s]?[0-9]*)+)*$/);
+        if(reg.test(v)){
+          $("#product_name1").html("");
+          $("#product_name").css("border","1px solid green");
+         
+        } else {
+        $("#product_name1").css("color","red");
+          $("#product_name1").html("Alpha numeric/ alphabetic");
+           $("#product_name").css("border","1px solid red");
+          
+        }
+
+      });
+
+      $("#monthly_price").on('keyup',function(){
+        var v=$(this).val();
+        var reg=new RegExp('([0-9]+(\.[0-9]+)?)');
+        if($.isNumeric(v)){
+          $("#monthly_price1").html("");
+          $("#monthly_price").css("border","1px solid green");
+           flag=flag+1;
+         
+        } else {
+        $("#monthly_price1").css("color","red");
+          $("#monthly_price1").html("invalid");
+           $("#monthly_price").css("border","1px solid red");
+          
         }
 
       })
+       $("#annual_price").keyup(function(){
+        var v=$(this).val();
+        var reg=new RegExp('([0-9]+(\.[0-9]+)?)');
+        if($.isNumeric(v)){
+          $("#annual_price1").html("");
+           $("#annual_price").css("border","1px solid green");
+            flag=flag+1;
+         
+        } else {
+        $("#annual_price1").css("color","red");
+         $("#annual_price").css("border","1px solid red");
+          $("#annual_price1").html("invalid");
+          
+        }
+
+      })
+
+      $("#web_space").keyup(function(){
+        var v=$(this).val();
+        var reg=new RegExp('([0-9]+(\.[0-9]+)?)');
+        if($.isNumeric(v)){
+          $("#web_space1").html("");
+             $("#web_space").css("border","1px solid green");
+              flag=flag+1;
+         
+        } else {
+        $("#web_space1").css("color","red");
+          $("#web_space1").html("invalid");
+            $("#web_space").css("border","1px solid red");
+          
+        }
+
+      })
+       $("#band_width").keyup(function(){
+        var v=$(this).val();
+        var reg=new RegExp('([0-9]+(\.[0-9]+)?)');
+        if($.isNumeric(v)){
+          $("#band_width1").html("");
+            $("#band_width").css("border","1px solid green");
+             flag=flag+1;
+         
+        } else {
+         $("#band_width").css("border","1px solid red");
+        $("#band_width1").css("color","red");
+          $("#band_width1").html("invalid");
+          
+        }
+
+      })
+      if(flag<9){
+        $("#submit").css("display","disabled")
+      }
+      
+      
     })
     </script>
 
