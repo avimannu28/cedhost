@@ -17,6 +17,9 @@ if(!isset( $_SESSION['admin'])){
         $annual_price=$value['annual_price'];
         $sku=$value['sku'];
     }
+    $available=$category->availabilitys($_GET['id']);
+    
+
   }
   
 
@@ -41,6 +44,8 @@ if(!isset( $_SESSION['admin'])){
     $check=$category->edit_new_product($product_parent_id,$product_name,$monthly_price,$annual_price,$sku,$feature,$id,$available);
     if($check==1){
       echo "<script>alert('Updated Successfully');window.location.href='view_product.php'</script>"; 
+    }if($check==0){
+         echo "<script>alert('Product Name Already Exist');window.location.href='view_product.php'</script>"; 
     }
   }
 
@@ -165,7 +170,7 @@ if(!isset( $_SESSION['admin'])){
                         <select class="browser-default custom-select text-dark" name='availability'>
 
                             <?php 
-                                if($prod_available==0){
+                                if($available==0){
                                     echo "<option value='0'>Unavailable</option>
                                             <option value='1'>Available</option>";
                                 }else{

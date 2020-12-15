@@ -62,19 +62,19 @@ session_start();
                                     <span>Full Name<label>*</label></span>
                                     <input type="text" name='signupname' maxlength="32"
                                         title="First name contain letter only whithout space and special character"
-                                        pattern="^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$" id='fname'
+                                        pattern="^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$" id='fname' onblur="myfun(this.id)"
                                         placeholder="Firstname" required>
                                 </div>
                                 <div>
                                     <span>Phone Number<label>*</label></span>
-                                    <input type="text" name='mobile'
+                                    <input type="text" name='mobile' id='mobile' onblur="myfun(this.id)"
                                         pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$"
                                         title="if 0 then it will be 11 digit else 10 digit"
                                         placeholder="mobile Number must be 10 digit" required>
                                 </div>
                                 <div>
                                     <span>Email Address<label>*</label></span>
-                                    <input type="text" name='signupemail'
+                                    <input type="text" name='signupemail' id='signupmail' onblur="myfun(this.id)"
                                         pattern="^(?!.*\.{2})[a-zA-Z0-9.]+@[a-zA-Z]+(?:\.[a-zA-Z]+)*$"
                                         title="valid@email.com" placeholder="valid@mail.com" required>
 
@@ -89,7 +89,7 @@ session_start();
                                     <option value="Your Favorite Food">Your Favorite Book?</option>
                                     <option value="Your Favorite Movie">Your Favorite Movie?</option>
                                     <input type="text" name='answer' maxlength="32"
-                                        pattern='^([A-Za-z0-9]+ )+[A-Za-z0-9]+$|^[A-Za-z0-9]+$'
+                                        pattern='^([A-Za-z0-9]+ )+[A-Za-z0-9]+$|^[A-Za-z0-9]+$' id='answer' onblur="myfun(this.id)"
                                         style='width:270px;margin:10px;' required>
 
                                 </select>
@@ -109,7 +109,7 @@ session_start();
                                 <div>
 
                                     <span>Password<label>*</label></span>
-                                    <input type="password" name='signuppassword'
+                                    <input type="password" name='signuppassword' id='signuppassword' onblur="myfun(this.id)"
                                         pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$"
                                         required>
                                     <small id="passwordHelpBlock" class="form-text text-muted">
@@ -119,7 +119,7 @@ session_start();
                                 </div>
                                 <div>
                                     <span>Confirm Password<label>*</label></span>
-                                    <input type="password" name='signuppassword2'
+                                    <input type="password" name='signuppassword2' id='signuppassword2' onblur="myfun(this.id)"
                                         pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$"
                                         required>
                                     <small id="passwordHelpBlock" class="form-text text-muted">
@@ -132,7 +132,7 @@ session_start();
                         <div class="clearfix"> </div>
                         <div class="register-but">
 
-                            <input type="submit" name='signup' value="submit">
+                            <input type="submit" type='button' class='btn btn-warning' name='signup' id='submit' value="submit">
                             <div class="clearfix"> </div>
         </form>
     </div>
@@ -146,6 +146,42 @@ session_start();
     <!---footer--->
     <?php include './footer.php'; ?>
     <!---footer--->
+    <script>
+        function myfun(id){
+            data=document.getElementById(id).value;
+            if(data==0){
+                 $("#"+id).css("border","1px solid red");
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#fname").keyup(function(){
+                name=$("#fname").val()
+                 var reg = new RegExp("^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$");
+                if(reg.test(name)){
+                    $("#fname").css("border","1px solid green")
+                    $("#submit").removeAttr("disabled")
+                }else{
+                $("#fname").css("border","1px solid red")
+                $("#submit").prop("disabled","true");   
+                }
+            })
+
+            //   $("#signupmail").keyup(function(){
+            //     name=$("#signupmail").val()
+            //      var reg = new RegExp("^(?!.*\.{2})[a-zA-Z0-9.]+@[a-zA-Z]+(?:\.[a-zA-Z]+)*$");
+            //     if(reg.test(name)){
+            //         $("#signupmail").css("border","1px solid green")
+                   
+            //     }else{
+            //     $("#signupmail").css("border","1px solid red")
+                
+            //     }
+            // })
+        })
+    </script>
+   
 </body>
 
 </html>

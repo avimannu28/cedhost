@@ -10,8 +10,7 @@ if(!isset( $_SESSION['admin'])){
   if(isset($_POST['submit'])){
     $subcategory=$_POST['sub_category_name'];
     $category_id=$_POST['parent_category'];
-    $link=$_POST['link'];
-    $value=$category->add_sub_categories($category_id,$subcategory,$link);
+    $value=$category->add_sub_categories($category_id,$subcategory);
     if($value==1){
       echo "<script>alert('Added Successfully')</script>";
     }else{
@@ -71,12 +70,9 @@ if(!isset( $_SESSION['admin'])){
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Sub Category Name</label>
                         <input type='text' class="form-control text-dark" placeholder='Enter category'
-                            pattern='^[a-zA-Z\s]*[a-zA-Z]+[.a-zA-Z0-9\-]*$' id='sub_category_name' name='sub_category_name' required>
+                            id='sub_category_name' name='sub_category_name' required>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Page Url</label>
-                        <input type='text' class="form-control text-dark" placeholder="Enter page link" name='link'>
-                    </div>
+                   
                     <input type='submit' value='submit' id='submit' name='submit' class='btn btn-success mb-4'>
                   
                 </form>
@@ -155,14 +151,19 @@ if(!isset( $_SESSION['admin'])){
     <script>
          $("#sub_category_name").keyup(function() {
             var v = $(this).val();
-            var reg = new RegExp('^[a-zA-Z\s]*[a-zA-Z]+[.a-zA-Z0-9\-]*$');
+            v=v.replace(/\.{2,}/g,'.');
+            v=v.replace(/\ {2,}/g,' ');
+            v=v.trim();
+            $(this).val(v);
+            var reg = new RegExp('^[a-zA-z][0-9a-zA-Z\.\ ]+[a-zA-z0-9]+$|^[a-zA-z][0-9a-zA-Z\ ]+$');
             if (reg.test(v)) {
                 $("#sub_category_name").css("border", "2px solid green");
-                 $("#submit").prop("disabled","false");
-            } else {
+                  $("#submit").removeAttr('disabled');
+            } else{
                 $("#sub_category_name").css("border", "2px solid red");
-                $("#submit").prop("disabled","true");
+                  $("#submit").attr('disabled', 'disabled');
             }
+           
 
         })
     </script>

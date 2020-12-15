@@ -1,5 +1,13 @@
 <?php 
     include './class/Product.php';
+		session_start();
+	$product = new Product();
+	$sub=$product->fetch_parent_node($_GET['id']);
+	$_SESSION["sub"]=$sub;
+	if(!isset($_SESSION['datas'])){
+		$_SESSION['datas']=array();
+	}
+	$html=$product->fetch_parent_link($_GET['id']);	
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -39,7 +47,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--script-->
 </head>
 <?php include './header.php'; ?>   
-
+<div class="linux-section">
+						<div class="container">
+							<div class="linux-grids">
+								<div class="col-md-8 linux-grid">
+								<h2><?php echo $sub; ?></h2>
+									<?php echo $html;?>
+									<a href="#data">view plans</a>
+								</div>
+								<div class="col-md-4 linux-grid1">
+									<img src="images/linux.png" class="img-responsive" alt=""/>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</div>
                             <div class="tab-prices">
 			<div class="container">
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
@@ -51,11 +73,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
 							<div class="linux-prices">
 							<div class="content"> 
-<div class="linux-prices">
+<div class="linux-prices" id='data'>
 <div class='container'>
 
 								<?php     
 								$product = new Product();
+								$sub=$product->fetch_parent_node($_GET['id']);
+								
 								if(isset($_GET['id'])){
 									$SubCategoryId=$_GET['id'];
 									$data=$product->fetch_new_products($SubCategoryId);
@@ -75,6 +99,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										$language = $description->Language_Technology;
 										$mailbox = $description->Mail_Box;
 										$availablity = $element['prod_available'];
+										$datavalue=array("productid"=>$productId,"category"=>$category,"product_name"=>$productName,
+										"monthly_price"=>$monthlyPrice,"annual_price"=>$annualPrice,"sku"=>$sku,"webspace"=>$description->Web_Space,
+										"band_width"=>$description->Band_Width,"freedomain"=>$description->Free_Domain,"language"=>$description->Language_Technology,"mailbox"=>$description->Mail_Box
+										);
+										array_push($_SESSION['datas'],$datavalue);
+										$_SESSION['datas'] = array_map("unserialize", array_unique(array_map("serialize", $_SESSION['datas'])));
+										
+										
 								
 								?>
 								<div class="col-md-3 linux-price">
@@ -94,10 +126,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<li><strong>location</strong> : <img src="images/india.png"></li>
 										</ul>
 									</div>
-									<a href="#">buy now</a>
+									<a href="checkout.php">buy now</a>
 								</div>
 
-									<?php }}}?>
+									<?php }}
+										
+									}?>
                                     </div>
                                     
 								<div class="clearfix"></div>

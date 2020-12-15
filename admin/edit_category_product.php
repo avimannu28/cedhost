@@ -1,35 +1,34 @@
 <?php
 session_start();
 if (!isset($_SESSION['admin'])) {
-    header('location:../login.php');
+ header('location:../login.php');
 }
 include './header.php';
 include_once '../class/Product.php';
 $category   = new Product();
 $categories = $category->fetch_category();
 if (isset($_GET['id'])) {
-    foreach ($categories as $row) {
-        if ($row['id'] == $_GET['id']) {
-            $id=$_GET['id'];
-            $categoryname = $row['prod_name'];
-            $link         = $row['link'];
-            $prod_available=$row['prod_available'];
-        }
-    }
-}
-  if(isset($_POST['submit'])){
-    $subcategory=$_POST['sub_category_name'];
-    $category_id=$_POST['parent_category'];
-    $link=$_POST['link'];
-    $available=$_POST['availability'];
-    $value=$category->edit_sub_categories($category_id,$subcategory,$link,$available,$id);
-    if($value==1){
-      echo "<script>alert('Updated Successfully');window.location.href='createCategory.php'</script>";
-    }else{
-         echo "<script>alert('Already Exist');window.location.href='createCategory.php'</script>";
-    }
+ foreach ($categories as $row) {
+  if ($row['id'] == $_GET['id']) {
+   $id           = $_GET['id'];
+   $categoryname = $row['prod_name'];
 
+   $prod_available = $row['prod_available'];
   }
+ }
+}
+if (isset($_POST['submit'])) {
+ $subcategory = $_POST['sub_category_name'];
+ $category_id = $_POST['parent_category'];
+ $available   = $_POST['availability'];
+ $value       = $category->edit_sub_categories($category_id, $subcategory, $available, $id);
+ if ($value == 1) {
+  echo "<script>alert('Updated Successfully');window.location.href='createCategory.php'</script>";
+ } else {
+  echo "<script>alert('Already Exist');window.location.href='createCategory.php'</script>";
+ }
+
+}
 
 ?>
 <!-- Header -->
@@ -71,12 +70,12 @@ if (isset($_GET['id'])) {
                             required>
 
                             <?php
-                        foreach ($categories as $key => $value) {
-                            if ($value['prod_parent_id'] == 0) {
-                                echo "<option value=" . $value['id'] . ">$value[prod_name]</option>";
-                            }
-                        }
-                        ?>
+foreach ($categories as $key => $value) {
+ if ($value['prod_parent_id'] == 0) {
+  echo "<option value=" . $value['id'] . ">$value[prod_name]</option>";
+ }
+}
+?>
                         </select>
                     </div>
 
@@ -88,24 +87,20 @@ if (isset($_GET['id'])) {
                     </div>
                     <div class="form-group">
                         <select class="browser-default custom-select text-dark" name='availability'>
-                            
-                            <?php 
-                                if($prod_available==0){
-                                    echo "<option value='0'>Unavailable</option>
+
+                            <?php
+if ($prod_available == 0) {
+ echo "<option value='0'>Unavailable</option>
                                             <option value='1'>Available</option>";
-                                }else{
-                                     echo " <option value='1'>Available</option>
+} else {
+ echo " <option value='1'>Available</option>
                                      <option value='0'>Unavailable</option>";
-                                }
-                            ?>
+}
+?>
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Page Url</label>
-                        <input type='text' class="form-control text-dark" value=<?php echo $link ?>
-                            placeholder="Enter page link" name='link' required>
-                    </div>
+
 
 
                     <input type='submit' value='submit' name='submit' class='btn btn-success mb-4'>
