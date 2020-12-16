@@ -1,44 +1,42 @@
-<?php 
+<?php
 session_start();
-    if(isset($_SESSION['email'])){
-        header('location: index.php');
+if (isset($_SESSION['email'])) {
+    header('location: index.php');
 }
 ?>
 <!DOCTYPE HTML>
 <html>
 
 <head>
-    <title>Planet Hosting a Hosting Category Flat Bootstrap Responsive Website Template | Login :: w3layouts</title>
+    <title>CedHost</title>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Planet Hosting Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+    <meta name="keywords" content="Planet Hosting Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script type="application/x-javascript">
-    addEventListener("load", function() {
-        setTimeout(hideURLbar, 0);
-    }, false);
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    }
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
     </script>
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <!---fonts-->
     <link href='//fonts.googleapis.com/css?family=Voltaire' rel='stylesheet' type='text/css'>
-    <link
-        href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
-        rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <!---fonts-->
     <!--script-->
     <link rel="stylesheet" href="css/swipebox.css">
     <script src="js/jquery.swipebox.min.js"></script>
     <script type="text/javascript">
-    jQuery(function($) {
-        $(".swipebox").swipebox();
-    });
+        jQuery(function($) {
+            $(".swipebox").swipebox();
+        });
     </script>
     <!--script-->
 </head>
@@ -46,7 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
     <!---header--->
     <?php include './header.php';
-        
+
     ?>
     <!---header--->
     <!---login--->
@@ -69,9 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <form>
                                     <div>
                                         <span>Email Address<label>*</label></span>
-                                        <input name='email' type="text"
-                                            pattern="[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+"
-                                            title="valid@email.com" placeholder="valid@mail.com" required>
+                                        <input name='email' type="text" pattern="[a-zA-Z0-9.!#$%&amp;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+" title="valid@email.com" placeholder="valid@mail.com" required>
                                     </div>
                                     <div>
                                         <span>Password<label>*</label></span>

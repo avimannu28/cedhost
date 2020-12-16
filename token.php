@@ -6,5 +6,4 @@
         $user=new User();
         $user->verify($email,$token);
     }
-
 ?>

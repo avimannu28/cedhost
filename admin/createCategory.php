@@ -72,6 +72,10 @@ if(!isset( $_SESSION['admin'])){
                         <input type='text' class="form-control text-dark" placeholder='Enter category'
                             id='sub_category_name' name='sub_category_name' required>
                     </div>
+                     <!-- <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Sub Category Name</label>
+                        <textarea class="form-control text-dark" placeholder='Enter category' id='sub_category_name' name='link' required></textarea>
+                    </div> -->
                    
                     <input type='submit' value='submit' id='submit' name='submit' class='btn btn-success mb-4'>
                   
@@ -141,13 +145,25 @@ if(!isset( $_SESSION['admin'])){
     </script>
     <script type="text/javascript" charset="utf8"
         src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+         <script src="https://cdn.tiny.cloud/1/qof73m9jd92d8lehuaiw1tznav0911f2mmt7t0ya5epyks6h/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
+    
     $(function() {
         $('#subcat').DataTable({
             "sPaginationType": "full_numbers"
         });
     })
     </script>
+    <script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+   });
+   </script>
     <script>
          $("#sub_category_name").keyup(function() {
             var v = $(this).val();

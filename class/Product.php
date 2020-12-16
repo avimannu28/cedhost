@@ -127,4 +127,9 @@ class Product
   }
  }
 
+  public function fetch_cart_products($id,$name){
+    $sql = mysqli_query($this->conn, "SELECT tbl_product_description.id,prod_id,description,mon_price,annual_price,sku,tbl_product.id,prod_parent_id,prod_name,html,prod_available,prod_launch_date FROM tbl_product_description INNER JOIN tbl_product ON tbl_product_description.prod_id =tbl_product.id where tbl_product.prod_parent_id='$id' and tbl_product.prod_name='$name'");
+    return $sql;
+ }
+
 }

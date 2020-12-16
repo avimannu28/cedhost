@@ -1,235 +1,252 @@
-<?php 
-    include './class/Product.php';
-		session_start();
-	$product = new Product();
-	$sub=$product->fetch_parent_node($_GET['id']);
-	$_SESSION["sub"]=$sub;
-	if(!isset($_SESSION['datas'])){
-		$_SESSION['datas']=array();
+<?php
+include './class/Product.php';
+session_start();
+
+$product         = new Product();
+if (base64_decode($_GET['id'])) {
+	$sub             = $product->fetch_parent_node(base64_decode($_GET['id']));
+	$_SESSION["sub"] = $sub;
+	if (!isset($_SESSION['datas'])) {
+		$_SESSION['datas'] = array();
 	}
-	$html=$product->fetch_parent_link($_GET['id']);	
+	$html = $product->fetch_parent_link(base64_decode($_GET['id']));
+} else {
+	header("location:./index.php");
+}
 ?>
 <!DOCTYPE HTML>
 <html>
+
 <head>
-<title>Planet Hosting a Hosting Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Planet Hosting Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	<title>CedHost</title>
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Planet Hosting Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<!---fonts-->
-<link href='//fonts.googleapis.com/css?family=Voltaire' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<!---fonts-->
-<!--script-->
-<script src="js/modernizr.custom.97074.js"></script>
-<script src="js/jquery.chocolat.js"></script>
-<link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
-<!--lightboxfiles-->
-<script type="text/javascript">
-	$(function() {
-	$('.team a').Chocolat();
-	});
-</script>	
-<script type="text/javascript" src="js/jquery.hoverdir.js"></script>	
-						<script type="text/javascript">
-							$(function() {
-							
-								$(' #da-thumbs > li ').each( function() { $(this).hoverdir(); } );
+	<script type="application/x-javascript">
+		addEventListener("load", function() {
+			setTimeout(hideURLbar, 0);
+		}, false);
 
-							});
-						</script>						
-<!--script-->
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<!---fonts-->
+	<link href='//fonts.googleapis.com/css?family=Voltaire' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!---fonts-->
+	<!--script-->
+	<script src="js/modernizr.custom.97074.js"></script>
+	<script src="js/jquery.chocolat.js"></script>
+	<link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
+	<!--lightboxfiles-->
+	<script type="text/javascript">
+		$(function() {
+			$('.team a').Chocolat();
+		});
+	</script>
+	<script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+	<script type="text/javascript">
+		$(function() {
+
+			$(' #da-thumbs > li ').each(function() {
+				$(this).hoverdir();
+			});
+
+		});
+	</script>
+	<!--script-->
 </head>
-<?php include './header.php'; ?>   
+<?php include './header.php'; ?>
 <div class="linux-section">
-						<div class="container">
-							<div class="linux-grids">
-								<div class="col-md-8 linux-grid">
-								<h2><?php echo $sub; ?></h2>
-									<?php echo $html;?>
-									<a href="#data">view plans</a>
+	<div class="container">
+		<div class="linux-grids">
+			<div class="col-md-8 linux-grid">
+				<h2><?php echo $sub; ?></h2>
+				<?php echo $html; ?>
+				<a href="#data">view plans</a>
+			</div>
+			<div class="col-md-4 linux-grid1">
+				<img src="images/linux.png" class="img-responsive" alt="" />
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<div class="tab-prices">
+	<div class="container">
+		<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+			<ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
+				<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">IN Hosting</a></li>
+				<li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">US Hosting</a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+					<div class="linux-prices">
+						<div class="content">
+							<div class="linux-prices" id='data'>
+								<div class='container'>
+
+									<?php
+									$product = new Product();
+									$sub     = $product->fetch_parent_node($_GET['id']);
+									$id      = base64_decode($_GET['id']);
+									if (isset($id)) {
+										$SubCategoryId             = $id;
+										$_SESSION['SubCategoryId'] = $SubCategoryId;
+										$_SESSION['id_sub']        = $SubCategoryId;
+										$data                      = $product->fetch_new_products($SubCategoryId);
+										if ($data) {
+											foreach ($data as $element) {
+												$productId             = $element['id'];
+												$category              = $element['prod_parent_id'];
+												$productName           = $element['prod_name'];
+												$_SESSION['prod_name'] = $productName;
+												$link                  = $element['html'];
+												$monthlyPrice          = $element['mon_price'];
+												$annualPrice           = $element['annual_price'];
+												$sku                   = $element['sku'];
+												$description           = json_decode($element['description']);
+												$webspace              = $description->Web_Space;
+												$bandwidth             = $description->Band_Width;
+												$freeDomain            = $description->Free_Domain;
+												$language              = $description->Language_Technology;
+												$mailbox               = $description->Mail_Box;
+												$availablity           = $element['prod_available'];
+												$datavalue             = array(
+													"productid" => $productId, "category"                 => $category, "product_name"             => $productName,
+													"monthly_price"                            => $monthlyPrice, "annual_price"          => $annualPrice, "sku"                   => $sku, "webspace"                             => $description->Web_Space,
+													"band_width"                               => $description->Band_Width, "freedomain" => $description->Free_Domain, "language" => $description->Language_Technology, "mailbox" => $description->Mail_Box,
+												);
+
+									?>
+												<div class="col-md-3 linux-price">
+													<div class="linux-top">
+														<h4><?php echo $productName ?></h4>
+													</div>
+													<div class="linux-bottom">
+														<h5>&#x20B9;<?php echo $monthlyPrice ?> <span class="month">per month</span></h5>
+														<h5>&#x20B9;<?php echo $annualPrice ?> <span class="month">per Annum</span></h5>
+														<h6><?php echo $freeDomain ?> Domain</h6>
+														<ul>
+															<li><strong><?php echo $webspace ?></strong> GB Disk Space</li>
+															<li><strong><?php echo $bandwidth ?></strong> GB Data Transfer</li>
+															<li><strong><?php echo $mailbox ?></strong> Email Accounts</li>
+															<li>Language Support <strong><?php echo $language ?></strong></li>
+															<li><strong>High Performance</strong> Servers</li>
+															<li><strong>location</strong> : <img src="images/india.png"></li>
+														</ul>
+													</div>
+													<?php echo "<a href='checkout.php?name=" . base64_encode($productName) . "'>buy now</a>" ?>
+												</div>
+
+									<?php }
+										}
+									} ?>
 								</div>
-								<div class="col-md-4 linux-grid1">
-									<img src="images/linux.png" class="img-responsive" alt=""/>
-								</div>
+
 								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-                            <div class="tab-prices">
-			<div class="container">
-				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-					<ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
-						<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">IN Hosting</a></li>
-						<li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">US Hosting</a></li>
-					</ul>
-					<div id="myTabContent" class="tab-content">
-						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-							<div class="linux-prices">
-							<div class="content"> 
-<div class="linux-prices" id='data'>
-<div class='container'>
-
-								<?php     
-								$product = new Product();
-								$sub=$product->fetch_parent_node($_GET['id']);
-								
-								if(isset($_GET['id'])){
-									$SubCategoryId=$_GET['id'];
-									$data=$product->fetch_new_products($SubCategoryId);
-								if ($data) {
-									foreach ($data as $element) {
-										$productId = $element['id'];
-										$category = $element['prod_parent_id'];
-										$productName = $element['prod_name'];
-										$link = $element['html'];
-										$monthlyPrice = $element['mon_price'];
-										$annualPrice = $element['annual_price'];
-										$sku = $element['sku'];
-										$description = json_decode($element['description']);
-										$webspace = $description->Web_Space;
-										$bandwidth = $description->Band_Width;
-										$freeDomain = $description->Free_Domain;
-										$language = $description->Language_Technology;
-										$mailbox = $description->Mail_Box;
-										$availablity = $element['prod_available'];
-										$datavalue=array("productid"=>$productId,"category"=>$category,"product_name"=>$productName,
-										"monthly_price"=>$monthlyPrice,"annual_price"=>$annualPrice,"sku"=>$sku,"webspace"=>$description->Web_Space,
-										"band_width"=>$description->Band_Width,"freedomain"=>$description->Free_Domain,"language"=>$description->Language_Technology,"mailbox"=>$description->Mail_Box
-										);
-										array_push($_SESSION['datas'],$datavalue);
-										$_SESSION['datas'] = array_map("unserialize", array_unique(array_map("serialize", $_SESSION['datas'])));
-										
-										
-								
-								?>
-								<div class="col-md-3 linux-price">
-									<div class="linux-top">
-										<h4><?php echo $productName ?></h4>
-									</div>
-									<div class="linux-bottom">
-										<h5>&#x20B9;<?php echo $monthlyPrice ?> <span class="month">per month</span></h5>
-										<h5>&#x20B9;<?php echo $annualPrice ?> <span class="month">per Annum</span></h5>
-										<h6><?php echo $freeDomain ?> Domain</h6>
-										<ul>
-											<li><strong><?php echo $webspace ?></strong> GB Disk Space</li>
-											<li><strong><?php echo $bandwidth ?></strong> GB Data Transfer</li>
-											<li><strong><?php echo $mailbox ?></strong> Email Accounts</li>
-											<li>Language Support <strong><?php echo $language?></strong></li>
-											<li><strong>High Performance</strong> Servers</li>
-											<li><strong>location</strong> : <img src="images/india.png"></li>
-										</ul>
-									</div>
-									<a href="checkout.php">buy now</a>
-								</div>
-
-									<?php }}
-										
-									}?>
-                                    </div>
-                                    
-								<div class="clearfix"></div>
 
 							</div>
-								<div class="clearfix"></div>
-							</div>
+							<div class="clearfix"></div>
 						</div>
-						</div>
-
-
-						<!-- US Product -->
-						<div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-							<div class="linux-prices">
-								<div class="col-md-3 linux-price">
-									<div class="linux-top us-top">
-										<h4>Standard</h4>
-									</div>
-									<div class="linux-bottom us-bottom">
-										<h5>$259 <span class="month">per month</span></h5>
-										<h6>Single Domain</h6>
-										<ul>
-											<li><strong>Unlimited</strong> Disk Space</li>
-											<li><strong>Unlimited</strong> Data Transfer</li>
-											<li><strong>Unlimited</strong> Email Accounts</li>
-											<li><strong>Includes </strong> Global CDN</li>
-											<li><strong>High Performance</strong> Servers</li>
-											<li><strong>location</strong> : <img src="images/us.png"></li>
-										</ul>
-									</div>
-									<a href="#" class="us-button">buy now</a>
-								</div>
-								<div class="col-md-3 linux-price">
-									<div class="linux-top us-top">
-										<h4>Advanced</h4>
-									</div>
-									<div class="linux-bottom us-bottom">
-										<h5>$359 <span class="month">per month</span></h5>
-										<h6>2 Domains</h6>
-										<ul>
-											<li><strong>Unlimited</strong> Disk Space</li>
-											<li><strong>Unlimited</strong> Data Transfer</li>
-											<li><strong>Unlimited</strong> Email Accounts</li>
-											<li><strong>Includes </strong> Global CDN</li>
-											<li><strong>High Performance</strong> Servers</li>
-											<li><strong>location</strong> : <img src="images/us.png"></li>
-										</ul>
-									</div>
-									<a href="#" class="us-button">buy now</a>
-								</div>
-								<div class="col-md-3 linux-price">
-									<div class="linux-top us-top">
-										<h4>Business</h4>
-									</div>
-									<div class="linux-bottom us-bottom">
-										<h5>$539 <span class="month">per month</span></h5>
-										<h6>3 Domains</h6>
-										<ul>
-											<li><strong>Unlimited</strong> Disk Space</li>
-											<li><strong>Unlimited</strong> Data Transfer</li>
-											<li><strong>Unlimited</strong> Email Accounts</li>
-											<li><strong>Includes </strong> Global CDN</li>
-											<li><strong>High Performance</strong> Servers</li>
-											<li><strong>location</strong> : <img src="images/us.png"></li>
-										</ul>
-									</div>
-									<a href="#" class="us-button">buy now</a>
-								</div>
-								<div class="col-md-3 linux-price">
-									<div class="linux-top us-top">
-										<h4>Pro</h4>
-									</div>
-									<div class="linux-bottom us-bottom">
-										<h5>$639 <span class="month">per month</span></h5>
-										<h6>Unlimited Domains</h6>
-										<ul>
-											<li><strong>Unlimited</strong> Disk Space</li>
-											<li><strong>Unlimited</strong> Data Transfer</li>
-											<li><strong>Unlimited</strong> Email Accounts</li>
-											<li><strong>Includes </strong> Global CDN</li>
-											<li><strong>High Performance</strong> Servers</li>
-											<li><strong>location</strong> : <img src="images/us.png"></li>
-										</ul>
-									</div>
-									<a href="#" class="us-button">buy now</a>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-
-						<!-- US Product End -->
 					</div>
 				</div>
+
+
+				<!-- US Product -->
+				<div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+					<div class="linux-prices">
+						<div class="col-md-3 linux-price">
+							<div class="linux-top us-top">
+								<h4>Standard</h4>
+							</div>
+							<div class="linux-bottom us-bottom">
+								<h5>$259 <span class="month">per month</span></h5>
+								<h6>Single Domain</h6>
+								<ul>
+									<li><strong>Unlimited</strong> Disk Space</li>
+									<li><strong>Unlimited</strong> Data Transfer</li>
+									<li><strong>Unlimited</strong> Email Accounts</li>
+									<li><strong>Includes </strong> Global CDN</li>
+									<li><strong>High Performance</strong> Servers</li>
+									<li><strong>location</strong> : <img src="images/us.png"></li>
+								</ul>
+							</div>
+							<a href="#" class="us-button">buy now</a>
+						</div>
+						<div class="col-md-3 linux-price">
+							<div class="linux-top us-top">
+								<h4>Advanced</h4>
+							</div>
+							<div class="linux-bottom us-bottom">
+								<h5>$359 <span class="month">per month</span></h5>
+								<h6>2 Domains</h6>
+								<ul>
+									<li><strong>Unlimited</strong> Disk Space</li>
+									<li><strong>Unlimited</strong> Data Transfer</li>
+									<li><strong>Unlimited</strong> Email Accounts</li>
+									<li><strong>Includes </strong> Global CDN</li>
+									<li><strong>High Performance</strong> Servers</li>
+									<li><strong>location</strong> : <img src="images/us.png"></li>
+								</ul>
+							</div>
+							<a href="#" class="us-button">buy now</a>
+						</div>
+						<div class="col-md-3 linux-price">
+							<div class="linux-top us-top">
+								<h4>Business</h4>
+							</div>
+							<div class="linux-bottom us-bottom">
+								<h5>$539 <span class="month">per month</span></h5>
+								<h6>3 Domains</h6>
+								<ul>
+									<li><strong>Unlimited</strong> Disk Space</li>
+									<li><strong>Unlimited</strong> Data Transfer</li>
+									<li><strong>Unlimited</strong> Email Accounts</li>
+									<li><strong>Includes </strong> Global CDN</li>
+									<li><strong>High Performance</strong> Servers</li>
+									<li><strong>location</strong> : <img src="images/us.png"></li>
+								</ul>
+							</div>
+							<a href="#" class="us-button">buy now</a>
+						</div>
+						<div class="col-md-3 linux-price">
+							<div class="linux-top us-top">
+								<h4>Pro</h4>
+							</div>
+							<div class="linux-bottom us-bottom">
+								<h5>$639 <span class="month">per month</span></h5>
+								<h6>Unlimited Domains</h6>
+								<ul>
+									<li><strong>Unlimited</strong> Disk Space</li>
+									<li><strong>Unlimited</strong> Data Transfer</li>
+									<li><strong>Unlimited</strong> Email Accounts</li>
+									<li><strong>Includes </strong> Global CDN</li>
+									<li><strong>High Performance</strong> Servers</li>
+									<li><strong>location</strong> : <img src="images/us.png"></li>
+								</ul>
+							</div>
+							<a href="#" class="us-button">buy now</a>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+
+				<!-- US Product End -->
 			</div>
 		</div>
+	</div>
+</div>
 
 </div>
 
-<?php include './footer.php'?>
+<?php include './footer.php' ?>
 </body>
+
 </html>

@@ -1,14 +1,14 @@
 <?php
 session_start();
-    if(isset($_SESSION['email'])){
-        header('location: index.php');
+if (isset($_SESSION['email'])) {
+    header('location: index.php');
 }
 ?>
 <!DOCTYPE HTML>
 <html>
 
 <head>
-    <title>Planet Hosting a Hosting Category Flat Bootstrap Responsive Website Template | Account :: w3layouts</title>
+    <title>CedHost</title>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,29 +16,27 @@ session_start();
     <meta name="keywords" content="Planet Hosting Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script type="application/x-javascript">
-    addEventListener("load", function() {
-        setTimeout(hideURLbar, 0);
-    }, false);
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    }
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
     </script>
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <!---fonts-->
     <link href='//fonts.googleapis.com/css?family=Voltaire' rel='stylesheet' type='text/css'>
-    <link
-        href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
-        rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <!---fonts-->
     <!--script-->
     <link rel="stylesheet" href="css/swipebox.css">
     <script src="js/jquery.swipebox.min.js"></script>
     <script type="text/javascript">
-    jQuery(function($) {
-        $(".swipebox").swipebox();
-    });
+        jQuery(function($) {
+            $(".swipebox").swipebox();
+        });
     </script>
 
     <!--script-->
@@ -46,7 +44,7 @@ session_start();
 
 <body>
     <!---header--->
-    <?php include './header.php'?>
+    <?php include './header.php' ?>
     <!---header--->
     <!---login--->
     <div class="content">
@@ -60,23 +58,15 @@ session_start();
                                 <h3>personal information</h3>
                                 <div>
                                     <span>Full Name<label>*</label></span>
-                                    <input type="text" name='signupname' maxlength="32"
-                                        title="First name contain letter only whithout space and special character"
-                                        pattern="^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$" id='fname' onblur="myfun(this.id)"
-                                        placeholder="Firstname" required>
+                                    <input type="text" name='signupname' maxlength="32" title="First name contain letter only whithout space and special character" pattern="^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$" id='fname' onblur="myfun(this.id)" placeholder="Firstname" required>
                                 </div>
                                 <div>
                                     <span>Phone Number<label>*</label></span>
-                                    <input type="text" name='mobile' id='mobile' onblur="myfun(this.id)"
-                                        pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$"
-                                        title="if 0 then it will be 11 digit else 10 digit"
-                                        placeholder="mobile Number must be 10 digit" required>
+                                    <input type="text" name='mobile' id='mobile' onblur="myfun(this.id)" pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$" title="if 0 then it will be 11 digit else 10 digit" placeholder="mobile Number must be 10 digit" required>
                                 </div>
                                 <div>
                                     <span>Email Address<label>*</label></span>
-                                    <input type="text" name='signupemail' id='signupmail' onblur="myfun(this.id)"
-                                        pattern="^(?!.*\.{2})[a-zA-Z0-9.]+@[a-zA-Z]+(?:\.[a-zA-Z]+)*$"
-                                        title="valid@email.com" placeholder="valid@mail.com" required>
+                                    <input type="text" name='signupemail' id='signupmail' onblur="myfun(this.id)" pattern="^(?!.*\.{2})[a-zA-Z0-9.]+@[a-zA-Z]+(?:\.[a-zA-Z]+)*$" title="valid@email.com" placeholder="valid@mail.com" required>
 
 
                                 </div>
@@ -88,9 +78,7 @@ session_start();
                                     <option value="What is Your Dream Job">What is Your Best friend name?</option>
                                     <option value="Your Favorite Food">Your Favorite Book?</option>
                                     <option value="Your Favorite Movie">Your Favorite Movie?</option>
-                                    <input type="text" name='answer' maxlength="32"
-                                        pattern='^([A-Za-z0-9]+ )+[A-Za-z0-9]+$|^[A-Za-z0-9]+$' id='answer' onblur="myfun(this.id)"
-                                        style='width:270px;margin:10px;' required>
+                                    <input type="text" name='answer' maxlength="32" pattern='^([A-Za-z0-9]+ )+[A-Za-z0-9]+$|^[A-Za-z0-9]+$' id='answer' onblur="myfun(this.id)" style='width:270px;margin:10px;' required>
 
                                 </select>
 
@@ -109,9 +97,7 @@ session_start();
                                 <div>
 
                                     <span>Password<label>*</label></span>
-                                    <input type="password" name='signuppassword' id='signuppassword' onblur="myfun(this.id)"
-                                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$"
-                                        required>
+                                    <input type="password" name='signuppassword' id='signuppassword' onblur="myfun(this.id)" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$" required>
                                     <small id="passwordHelpBlock" class="form-text text-muted">
                                         Your password must be 8-20 characters long, contain letters and numbers, and
                                         must not contain spaces, special characters, or emoji.
@@ -119,9 +105,7 @@ session_start();
                                 </div>
                                 <div>
                                     <span>Confirm Password<label>*</label></span>
-                                    <input type="password" name='signuppassword2' id='signuppassword2' onblur="myfun(this.id)"
-                                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$"
-                                        required>
+                                    <input type="password" name='signuppassword2' id='signuppassword2' onblur="myfun(this.id)" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$" required>
                                     <small id="passwordHelpBlock" class="form-text text-muted">
                                         Your password must be 8-20 characters long, contain letters and numbers, and
                                         must not contain spaces, special characters, or emoji.
@@ -147,24 +131,24 @@ session_start();
     <?php include './footer.php'; ?>
     <!---footer--->
     <script>
-        function myfun(id){
-            data=document.getElementById(id).value;
-            if(data==0){
-                 $("#"+id).css("border","1px solid red");
+        function myfun(id) {
+            data = document.getElementById(id).value;
+            if (data == 0) {
+                $("#" + id).css("border", "1px solid red");
             }
         }
     </script>
     <script>
-        $(document).ready(function(){
-            $("#fname").keyup(function(){
-                name=$("#fname").val()
-                 var reg = new RegExp("^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$");
-                if(reg.test(name)){
-                    $("#fname").css("border","1px solid green")
+        $(document).ready(function() {
+            $("#fname").keyup(function() {
+                name = $("#fname").val()
+                var reg = new RegExp("^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$");
+                if (reg.test(name)) {
+                    $("#fname").css("border", "1px solid green")
                     $("#submit").removeAttr("disabled")
-                }else{
-                $("#fname").css("border","1px solid red")
-                $("#submit").prop("disabled","true");   
+                } else {
+                    $("#fname").css("border", "1px solid red")
+                    $("#submit").prop("disabled", "true");
                 }
             })
 
@@ -173,15 +157,15 @@ session_start();
             //      var reg = new RegExp("^(?!.*\.{2})[a-zA-Z0-9.]+@[a-zA-Z]+(?:\.[a-zA-Z]+)*$");
             //     if(reg.test(name)){
             //         $("#signupmail").css("border","1px solid green")
-                   
+
             //     }else{
             //     $("#signupmail").css("border","1px solid red")
-                
+
             //     }
             // })
         })
     </script>
-   
+
 </body>
 
 </html>
