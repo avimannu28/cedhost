@@ -61,7 +61,7 @@ if(!isset( $_SESSION['admin'])){
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody \>
+                                    <tbody>
 
                                         <?php 
 
