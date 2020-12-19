@@ -2,9 +2,6 @@
 session_start();
 if (isset($_SESSION['email'])) {
     header('location./index.php');
-    if (isset($_SESSION['datas'])) {
-        header('location:./checkout.php');
-    }
 }
 
 ?>
